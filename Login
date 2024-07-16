@@ -1,0 +1,39 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class LoginPageTest {
+    public static void main(String[] args) {
+        // Set the path to the ChromeDriver executable (adjust this based on your system)
+        System.setProperty("webdriver.chrome.driver", "/path/to/chromedriver");
+
+        // Initialize the WebDriver instance
+        WebDriver driver = new ChromeDriver();
+
+        // Navigate to the login page
+        driver.get("https://juice-shop.herokuapp.com/#/login");
+
+        try {
+            // Find the username input field by its ID attribute
+            WebElement usernameField = driver.findElement(By.id("email"));
+
+            WebElement passwordField = driver.findElement(By.name("password"));
+
+            // Example: Entering values into the fields (replace with your test values)
+            usernameField.sendKeys("your_malicious_username");
+            passwordField.sendKeys("your_valid_password");
+
+            // Example: Submitting the form (replace with appropriate form submission code)
+            // Usually, you would find and click on the submit button after filling in the fields
+            // WebElement submitButton = driver.findElement(By.id("submit_button_id"));
+            // submitButton.click();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // Close the browser session
+            driver.quit();
+        }
+    }
+}
